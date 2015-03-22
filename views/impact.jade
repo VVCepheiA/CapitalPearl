@@ -17,60 +17,71 @@ head
   
   script(type='text/javascript').
     var donation =!{JSON.stringify(donations)};
-    console.log(donation);
+    
     (function(){
 
-    var yearRingChart   = dc.pieChart("#chart-ring-year"),
-        spendHistChart  = dc.barChart("#chart-hist-spend"),
-        spenderRowChart = dc.rowChart("#chart-row-spenders");
+      var cleanData = [];
+      donation.forEach(function(d) {
+        cleanData.push({
+          "Charity": d.charity,
+          "Rewards": d.donated,
+          "Year": d.date.substring(0,4)
+        });
+      });
+      console.log(cleanData);
 
-    // use static or load via d3.csv("spendData.csv", function(error, spendData) {/* do stuff */});
-    var spendData = [
-        {Charity: 'Community Empowerment Fund', Rewards: '40', Year: 2011},
-        {Charity: 'Paws4ever', Rewards: '10', Year: 2011},
-        {Charity: 'Girl Develop It', Rewards: '40', Year: 2011},
-        {Charity: 'Community Empowerment Fund', Rewards: '70', Year: 2012},
-        {Charity: 'Paws4ever', Rewards: '20', Year: 2012},
-        {Charity: 'Paws4ever', Rewards: '50', Year: 2013},
-        {Charity: 'Girl Develop It', Rewards: '30', Year: 2013}
-    ];
 
-    // normalize/parse data
-    spendData.forEach(function(d) {
-        d.Rewards = d.Rewards.match(/\d+/);
-    });
+      var yearRingChart   = dc.pieChart("#chart-ring-year"),
+          spendHistChart  = dc.barChart("#chart-hist-spend"),
+          spenderRowChart = dc.rowChart("#chart-row-spenders");
 
-    // set crossfilter
-    var ndx = crossfilter(spendData),
-        yearDim  = ndx.dimension(function(d) {return +d.Year;}),
-        spendDim = ndx.dimension(function(d) {return Math.floor(d.Rewards/10);}),
-        nameDim  = ndx.dimension(function(d) {return d.Charity;}),
-        spendPerYear = yearDim.group().reduceSum(function(d) {return +d.Rewards;}),
-        spendPerCharity = nameDim.group().reduceSum(function(d) {return +d.Rewards;}),
-        spendHist    = spendDim.group().reduceCount();
+      // use static or load via d3.csv("spendData.csv", function(error, spendData) {/* do stuff */});
+      var spendData = [
+          {Charity: 'Community Empowerment Fund', Rewards: '40', Year: 2011},
+          {Charity: 'Paws4ever', Rewards: '10', Year: 2011},
+          {Charity: 'Girl Develop It', Rewards: '40', Year: 2011},
+          {Charity: 'Community Empowerment Fund', Rewards: '70', Year: 2012},
+          {Charity: 'Paws4ever', Rewards: '20', Year: 2012},
+          {Charity: 'Paws4ever', Rewards: '50', Year: 2013},
+          {Charity: 'Girl Develop It', Rewards: '30', Year: 2013}
+      ];
 
-    yearRingChart
-        .width(200).height(200)
-        .dimension(yearDim)
-        .group(spendPerYear)
-        .innerRadius(50);
+      // normalize/parse data
+      spendData.forEach(function(d) {
+          d.Rewards = d.Rewards.match(/\d+/);
+      });
 
-    spendHistChart
-        .width(300).height(200)
-        .dimension(spendDim)
-        .group(spendHist)
-        .x(d3.scale.linear().domain([0,10]))
-        .elasticY(true);
+      // set crossfilter
+      var ndx = crossfilter(cleanData),
+          yearDim  = ndx.dimension(function(d) {return +d.Year;}),
+          spendDim = ndx.dimension(function(d) {return Math.floor(d.Rewards/10);}),
+          nameDim  = ndx.dimension(function(d) {return d.Charity;}),
+          spendPerYear = yearDim.group().reduceSum(function(d) {return +d.Rewards;}),
+          spendPerCharity = nameDim.group().reduceSum(function(d) {return +d.Rewards;}),
+          spendHist    = spendDim.group().reduceCount();
 
-    spendHistChart.xAxis().tickFormat(function(d) {return d*10}); // convert back to base unit
-    spendHistChart.yAxis().ticks(2);
+      yearRingChart
+          .width(200).height(200)
+          .dimension(yearDim)
+          .group(spendPerYear)
+          .innerRadius(50);
 
-    spenderRowChart
-        .width(350).height(200)
-        .dimension(nameDim)
-        .group(spendPerCharity)
-        .elasticX(true);
+      spendHistChart
+          .width(300).height(200)
+          .dimension(spendDim)
+          .group(spendHist)
+          .x(d3.scale.linear().domain([0,10]))
+          .elasticY(true);
 
-    dc.renderAll();
+      spendHistChart.xAxis().tickFormat(function(d) {return d*10}); // convert back to base unit
+      spendHistChart.yAxis().ticks(2);
+
+      spenderRowChart
+          .width(350).height(200)
+          .dimension(nameDim)
+          .group(spendPerCharity)
+          .elasticX(true);
+
+      dc.renderAll();
 
     })();

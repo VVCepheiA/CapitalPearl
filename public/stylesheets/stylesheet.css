@@ -33,6 +33,23 @@ a{
   
 }
 
+hr{
+  color:#8c8a8a;
+  text-align: center;
+  width:50%;
+}
+h2{
+  
+  font-weight:300;
+}
+.about, .text{
+  color:#8c8a8a;
+  padding:20px 30px 10px 30px;
+  text-align: center;
+  font-size:20px;
+  font-weight:300;
+}
+
 a:hover{
      color:#8bb8c6;
    
@@ -127,3 +144,4 @@ footer{
  font-family: 'Noto Sans', sans-serif;
  color:#d4d4d4;
 }
+

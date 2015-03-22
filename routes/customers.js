@@ -112,7 +112,7 @@ router.route('/donate').post(function(req, res) {
       "customer": customer.id,
       "donated": req.body.donation,
       "originpoint": customer["rewards"],
-      "charity": "Test"
+      "charity": req.body.charity
     });
     donation.save(function(err) {
       if (err) { return res.send(err); }
@@ -121,7 +121,7 @@ router.route('/donate').post(function(req, res) {
     customer["rewards"] = customer["rewards"]-req.body.donation;
     customer.save(function(err) {
       if (err) { return res.send(err); }
-      res.json({ message: 'Customer updated!' });
+      res.redirect('/impact');
     });
 
   });
