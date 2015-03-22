@@ -1,4 +1,5 @@
 var Customer = require('../models/customer');
+var Donation = require('../models/donation');
 var express = require('express');
 var router = express.Router();
 var http = require('http');
@@ -81,6 +82,53 @@ router.route('/:id').delete(function(req, res) {
     res.json({ message: 'Successfully deleted' });
   });
 });
+
+//===========================Donation API=================================
+
+router.route('/login').post(function(req, res) {
+  console.log(req.body);
+  Customer.findOne({
+    cardnumber: req.body.cardnumber,
+    zipcode: req.body.zipcode,
+    code: req.body.code,
+    lastname: req.body.lastname,
+    firstname: req.body.firstname
+  }, function(err, customer) {
+    if (err) {
+      return res.send(err);
+    }
+    res.json({ customer: customer });
+  });
+});
+
+
+router.route('/donate').post(function(req, res) {
+  console.log(req.body);
+  Customer.findOne({
+    cardnumber: req.body.cardnumber
+  }, function(err, customer) {
+    if (err) { return res.send(err); }
+
+    var donation = new Donation({
+      "customer": customer.id,
+      "donated": req.body.donation,
+      "originpoint": customer["rewards"],
+      "charity": "Test"
+    });
+    donation.save(function(err) {
+      if (err) { return res.send(err); }
+    });
+
+    customer["rewards"] = customer["rewards"]-req.body.donation;
+    customer.save(function(err) {
+      if (err) { return res.send(err); }
+      res.json({ message: 'Customer updated!' });
+    });
+
+  });
+});
+
+
 
 module.exports = router;
 
