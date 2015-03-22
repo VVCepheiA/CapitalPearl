@@ -13,7 +13,6 @@ router.get('/impact', function(req, res, next) {
     res.render('impact', { donations: donations });
     // res.json(donations);
   });
-  
 });
 
 module.exports = router;

@@ -10,53 +10,60 @@ head
     link(href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700', rel='stylesheet', type='text/css')
 
     link(rel='stylesheet', href='stylesheets/modal.css')
-body
+body#page-top(data-spy='scroll', data-target='.navbar-fixed-top')
+  .banner
+    a.page-scroll(href='#charity')
+      p 
+  
+  #charity.charity
+  ul.img-list
+    li
+      .charity1
+        a.signin(href='#signinform', id='community')
+          img.img-responsive(src='images/charity1.png')
+          |             
+          span.text-content
+            span
+              | The Community Empowerment Fund (CEF) is a student-run non-profit based in Chapel Hill, NC. CEF provides savings opportunities, financial education, and support to unemployed and underemployed individuals in Orange and Durham counties. CEF&apos;s program emphasizes 1-on-1 support, savings programs, and opportunity classes free of charge to help people lift themselves out of poverty.
+        |                 
+        .link
+          a(href='http://communityempowermentfund.org/') Community Empowerment Fund
+    |             
+    |             
+    li
+      .charity2
+        a.signin(href='#signinform', id='girl')
+          img.img-responsive(src='images/charity2.jpg')
+          |                 
+          span.text-content
+            span
+              | Help improve the technology industry&apos;s diversity problem by supporting women in technology. Girl Develop It (GDI) is the leading nonprofit organization providing accessible learning programs for adult women. GDI is committed to making sure women of all races, education levels, and upbringing can build confidence in their ability to code. Their vision is to create a network of empowered women who feel confident in their ability to code to help improve women&apos;s career and confidence in their everyday lives.
+        |                 
+        .link
+          a(href='https://www.girldevelopit.com/') Girl Develop It
+    |             
+    li
+      .charity3
+        a.signin(href='#signinform', id='animal')
+          img.img-responsive(src='images/charity3.jpg')
+          |                 
+          span.text-content
+            span
+              | Paws4ever is a guaranteed-adoption animal shelter and sanctuary located in Hillsborough, NC, dedicated to improving the lives of cats and dogs through adoption, training and education. They also provide Legacy Care, a program that cares for animals when owners are no longer able to due to illness, aging, or death. Paws4ever has a strong commitment to equal treatment of animals and shelter animals.
+        |                 
+        .link
+          a(href='http://paws4ever.org/') Paws4ever
+  footer
+      p.footer
+        | Team Members: Vera Lin | Alice Lee | Keren Tseytlin | Lauren Song | @PearlHacks2015
 
-  .heading
-    h1 Rewarding Charity
-    |         
-    h6 Put your card rewards to good use. Donate to charity. So easy. So local.
-    |         
-    hr 
-  |    
-  .charity
-    ul.img-list
-      li
-        .charity1
-          a.signin(href='#signinform', id='community')
-            img.img-responsive(src='images/charity1.png')
-            |             
-            span.text-content
-              span
-                | The Community Empowerment Fund (CEF) is a student-run non-profit based in Chapel Hill, NC. CEF provides savings opportunities, financial education, and support to unemployed and underemployed individuals in Orange and Durham counties. CEF&apos;s program emphasizes 1-on-1 support, savings programs, and opportunity classes free of charge to help people lift themselves out of poverty.
-          |                 
-          .link
-            a(href='http://communityempowermentfund.org/') Community Empowerment Fund
-      |             
-      |             
-      li
-        .charity2
-          a.signin(href='#signinform', id='girl')
-            img.img-responsive(src='images/charity2.jpg')
-            |                 
-            span.text-content
-              span
-                | Help improve the technology industry&apos;s diversity problem by supporting women in technology. Girl Develop It (GDI) is the leading nonprofit organization providing accessible learning programs for adult women. GDI is committed to making sure women of all races, education levels, and upbringing can build confidence in their ability to code. Their vision is to create a network of empowered women who feel confident in their ability to code to help improve women&apos;s career and confidence in their everyday lives.
-          |                 
-          .link
-            a(href='https://www.girldevelopit.com/') Girl Develop It
-      |             
-      li
-        .charity3
-          a.signin(href='#signinform', id='animal')
-            img.img-responsive(src='images/charity3.jpg')
-            |                 
-            span.text-content
-              span
-                | Paws4ever is a guaranteed-adoption animal shelter and sanctuary located in Hillsborough, NC, dedicated to improving the lives of cats and dogs through adoption, training and education. They also provide Legacy Care, a program that cares for animals when owners are no longer able to due to illness, aging, or death. Paws4ever has a strong commitment to equal treatment of animals and shelter animals.
-          |                 
-          .link
-            a(href='http://paws4ever.org/') Paws4ever
+
+
+
+
+
+
+
 
     #signinform
       form(action='customers/login', method='POST', role='form')
@@ -80,6 +87,14 @@ body
         br
         br
         button.myButton(type='submit') submit
+
+
+
+
+
+
+
+
 
 
   script(type='text/javascript', src='javascripts/jquery.js')          

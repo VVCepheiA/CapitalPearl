@@ -17,7 +17,7 @@ mongoose.connect(connectionString);
 var routes = require('./routes/index');
 //var users = require('./routes/users');
 var customers = require('./routes/customers');
-var donations = require('./routes/donations');
+var donations = require('./routes/customers');
 
 var app = express();
 
