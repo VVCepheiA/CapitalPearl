@@ -15,4 +15,8 @@ router.get('/impact', function(req, res, next) {
   });
 });
 
+
+router.get('/impactdemo', function(req, res, next) {
+  res.render('impactdemo',{});
+});
 module.exports = router;

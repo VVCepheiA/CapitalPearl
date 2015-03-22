@@ -20,19 +20,9 @@ head
     script(type='text/javascript', src='javascripts/visualisation.js')
   
   script(type='text/javascript').
-    var donation =!{JSON.stringify(donations)};
     
     (function(){
 
-      var cleanData = [];
-      donation.forEach(function(d) {
-        cleanData.push({
-          "Charity": d.charity,
-          "Rewards": d.donated,
-          "Year": d.date.substring(0,4)
-        });
-      });
-      console.log(cleanData);
 
 
       var yearRingChart   = dc.pieChart("#chart-ring-year"),
@@ -56,7 +46,7 @@ head
       });
 
       // set crossfilter
-      var ndx = crossfilter(cleanData  ),
+      var ndx = crossfilter( spendData ),
           yearDim  = ndx.dimension(function(d) {return +d.Year;}),
           spendDim = ndx.dimension(function(d) {return Math.floor(d.Rewards/10);}),
           nameDim  = ndx.dimension(function(d) {return d.Charity;}),
