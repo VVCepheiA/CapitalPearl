@@ -9,9 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/impact', function(req, res, next) {
   Donation.find(function(err, donations) {
-    if (err) {
-      return res.send(err);
-    }
+    if (err) { return res.send(err); }
     res.render('impact', { donations: donations });
     // res.json(donations);
   });
