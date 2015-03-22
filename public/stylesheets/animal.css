@@ -1,0 +1,115 @@
+*{
+  text-align:center;
+}
+
+body {
+  /* Location of the image */
+  background-image: url(../images/animal.jpg);
+  
+  /* Image is centered vertically and horizontally at all times */
+  background-position: center center;
+  
+  /* Image doesn't repeat */
+  background-repeat: no-repeat;
+  
+  /* Makes the image fixed in the viewport so that it doesn't move when 
+     the content height is greater than the image height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based on its container's size */
+  background-size: cover;
+  
+  /* Pick a solid background color that will be displayed while the background image is loading */
+  background-color:#464646;
+  
+  /* SHORTHAND CSS NOTATION
+   * background: url(background-photo.jpg) center center cover no-repeat fixed;
+   */
+}
+
+
+
+.container{
+    padding:100px 0 0 0;
+    width: 100%;
+    height: auto;;
+}
+
+.points{
+  text-align: center;
+  background: none;
+  border: 4px solid #fff;
+  border-radius:50%;
+  color: #fff;
+  width:250px;
+  height:240px;
+  vertical-align: middle;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color:white;
+  font-family: 'Titillium Web', sans-serif;
+  font-size:2em;
+  padding-top: 30px;
+}
+
+p{
+  color:white;
+  font-family: 'Titillium Web', sans-serif;
+  font-size:2em;
+}
+
+.large{
+text-align:center;
+color:white;
+font-family: 'Titillium Web', sans-serif;
+font-size:3em;
+}
+
+.myButton {
+	background: none;
+  padding: 10px 25px;
+  margin-right: 10px;
+  border: 1px solid white;
+  border-radius: 3px;
+  color:white;
+}
+.myButton:hover {
+	background:rgba(255,255,255,.8);
+  color:black;
+  transition: background 0.5s ease-out;
+}
+
+.elegantButton{
+  background: none;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid white;
+  border-radius: 3px;
+}
+
+.elegantButton:hover{
+  background:rgba(255,255,255,.2);
+  transition: background 1s ease-out;
+}
+
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.input {
+  font-size: 20px;
+}
+
+.input input{
+  height: 30px;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.has-bg{
+  background-color: rgba(0,0,0,.6);
+  min-height: 100%;
+
+}

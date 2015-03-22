@@ -97,10 +97,9 @@ router.route('/login').post(function(req, res) {
     if (err) {
       return res.send(err);
     }
-    res.json({ customer: customer });
+    res.render(req.body.page,  {customer: customer });
   });
 });
-
 
 router.route('/donate').post(function(req, res) {
   console.log(req.body);
@@ -127,7 +126,6 @@ router.route('/donate').post(function(req, res) {
 
   });
 });
-
 
 
 module.exports = router;

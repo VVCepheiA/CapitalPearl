@@ -17,14 +17,13 @@ body
     |         
     h6 Put your card rewards to good use. Donate to charity. So easy. So local.
     |         
-    hr
-  |     
+    hr 
   |    
   .charity
     ul.img-list
       li
         .charity1
-          a.signin(href='#signinform')
+          a.signin(href='#signinform', id='community')
             img.img-responsive(src='images/charity1.png')
             |             
             span.text-content
@@ -37,7 +36,7 @@ body
       |             
       li
         .charity2
-          a.signin(href='#signinform')
+          a.signin(href='#signinform', id='girl')
             img.img-responsive(src='images/charity2.jpg')
             |                 
             span.text-content
@@ -49,7 +48,7 @@ body
       |             
       li
         .charity3
-          a.signin(href='#signinform')
+          a.signin(href='#signinform', id='animal')
             img.img-responsive(src='images/charity3.jpg')
             |                 
             span.text-content
@@ -77,9 +76,9 @@ body
         br
         | &#x9;&#x9;
         input(type='text', name='code', placeholder='CVV')
+        input(type='hidden', name='page', id='page')
         br
         br
-        // !input type="button" onclick="myFunction()" value="submit"
         button.myButton(type='submit') submit
 
 
@@ -87,4 +86,17 @@ body
   script(type='text/javascript', src='javascripts/jquery.leanModal.min.js')
   script(type='text/javascript').
     $(".signin").leanModal();
+
+    $("#animal").click(function() {
+      $("#page").val("animal");
+    });
+    $("#girl").click(function() {
+      $("#page").val("girl");
+    });
+    $("#community").click(function() {
+      $("#page").val("community");
+      
+    });
+
+
 

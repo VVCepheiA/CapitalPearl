@@ -1,0 +1,32 @@
+doctype html(lang='en')
+head
+    title Girl Develop It
+    |     
+    link(rel='stylesheet', href='../../stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='../../stylesheets/girl.css')
+    link(href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600', rel='stylesheet', type='text/css')
+  body
+    .has-bg
+      .container
+        p YOU HAVE
+        |         
+        .points
+          span.large 
+            |#{customer.rewards}
+          br
+          | pts
+    |     
+    br
+    br
+    |     
+    .input
+      form(action='donate', method='POST', role='form')
+        input(type='text', name='donation', placeholder='Amount to donate?')
+        input(type='hidden' name='originpoint' value="#{customer.rewards}")
+        input(type='hidden' name='charity' value='Girl Develop It')
+        input(type='hidden' name='cardnumber' value='#{customer.cardnumber}')
+        |     
+        br
+        br
+        |     
+        button(type='submit').myButton Donate
